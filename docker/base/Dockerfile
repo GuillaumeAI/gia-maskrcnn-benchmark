@@ -1,10 +1,16 @@
-ARG CUDA="9.0"
+ARG CUDA="10.2"
 ARG CUDNN="7"
 
-FROM jgwill/py-cuda:latest
+FROM jgwill/py-cuda-conda:latest
 #FROM nvidia/cuda:${CUDA}-cudnn${CUDNN}-devel-ubuntu16.04
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+
+#RUN nvcc --version
+#RUN ls /usr/local/cuda/include
+#RUN cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+#RUN sleep 3
 
 # install basics
 RUN apt-get update -y \
